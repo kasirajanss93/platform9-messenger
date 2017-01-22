@@ -6,24 +6,28 @@ Assumptions
 
 1. Client A will have a list of Clients to which it can communicate and vice versa. It is hard coded for now
 
-2. Clients and Servers are in different machine - used socket programming to communicate between the client and the server
+2. Client A needs to know the username of Client B for the communication to happen, for now as mentioned before it is hard coded
 
-3. Made use of RabbitMQ to handle multiple client requests in a FIFO manner. If multiple clients tries to communicate at the same time to the server then the requests are handled in a FIFO manner
+3. Clients and Servers are in different machine - used socket programming to communicate between the client and the server. 
 
-4. Assumptions have to made to handle clients request asynchronously (similar to ACTOR model). Each client will have its own MailBox, in this case, it is a Queue. Once the request comes into the queue then the message is displayed on the client
+4. Made use of RabbitMQ to handle multiple client requests in a FIFO manner. If multiple clients tries to communicate at the same time to the server then the requests are handled in a FIFO manner
 
-5. Multiple clients can send message to a particular client, say A. A will receive those message but A for A to communicate it should estabish a connection to the particular client it needs to communicate
+5. Assumptions have made to handle clients request asynchronously (similar to ACTOR model). Each client will have its own MailBox, in this case, it is a Queue. Once the request comes into the queue then the message is displayed on the client
 
-6. Client can press Enter without typing anything to choose the client it wants to communicate
+6. Multiple clients can send message to a particular client, say A. A will receive those message but for A to communicate it should estabish a connection to the particular client it needs to communicate
 
-7. If the client name entered is wrong, then it will prompt again to select the client
+7. Client can press Enter without typing anything to choose the client it wants to communicate
+
+8. If the client name entered is wrong, then it will prompt again to select the client
+
+9. The ports of each client are stored in the server in a hashmap. This can be enhanced in the future, allowing clients to register to the server
 
 
 System Explanation
 
 1. A Client A can choose the other client (B,C,D) to which it can communication
 
-2. If the chosen client is in the list of user the client can communicate then it can start communicating
+2. If the chosen client is in the list of user the client can communicate, then it can start communicating
 
 3. Client type the message and when enter is pressed the message is sent to servers port (1234)
 
@@ -52,7 +56,7 @@ Steps to Setup
 
 7. Run Multiple Clients - Client1.java,Client2.java,Client3.java,Client4.java
 
-8. Giving enter which typing anything will allow choosing next client
+8. Giving enter without typing anything will allow choosing next client
 
 9. The following are the example of the client communication in action 
 
