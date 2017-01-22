@@ -52,61 +52,61 @@ Steps to Setup
 
 7. Run Multiple Clients - Client1.java,Client2.java,Client3.java,Client4.java
 
-Client1 
-[*] Waiting for messages. To exit press CTRL+C
-Client List
-Client1
-Client2
-Client3
-Enter Client Name:
-Client2
-Start Typing......
-Client2: Hi
-Hello
-You: Hello
-How are you ?
-You: How are you ?
-Client2: I am good
+- Client1 
+- [*] Waiting for messages. To exit press CTRL+C
+- Client List
+- Client1
+- Client2
+- Client3
+- Enter Client Name:
+- Client2
+- Start Typing......
+- Client2: Hi
+- Hello
+- You: Hello
+- How are you ?
+- You: How are you ?
+- Client2: I am good
+.
+.
+.
+- Client2
 
+- [*] Waiting for messages. To exit press CTRL+C
+- Client List
+- Client1
+- Client2
+- Client3
+- Client4
+- Enter Client Name:
+- Client1
+- Start Typing......
+- Hi
+- You: Hi
+- Client1: Hello
+- Client1: How are you ?
+- I am good
+- You: I am good
+- You: 
+- Client List
+- Client1
+- Client2
+- Client3
+- Client4
+- Enter Client Name:
+- Client3
+- Start Typing......
+- Hi Hello
+- You: Hi Hello
 
-
-Client2
-
-[*] Waiting for messages. To exit press CTRL+C
-Client List
-Client1
-Client2
-Client3
-Client4
-Enter Client Name:
-Client1
-Start Typing......
-Hi
-You: Hi
-Client1: Hello
-Client1: How are you ?
-I am good
-You: I am good
-You: 
-Client List
-Client1
-Client2
-Client3
-Client4
-Enter Client Name:
-Client3
-Start Typing......
-Hi Hello
-You: Hi Hello
-
-Client3
- [*] Waiting for messages. To exit press CTRL+C
-Client List
-Client1
-Client2
-Client3
-Enter Client Name:
-Client2: Hi Hello
+- Client3
+-  [*] Waiting for messages. To exit press CTRL+C
+- Client List
+- Client1
+- Client2
+- Client3
+- Enter Client Name:
+- Client2: Hi Hello
 
 
 8. Giving enter which typing anything will allow to choose next client
