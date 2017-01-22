@@ -1,6 +1,7 @@
 /**
  * Created by kasi-mac on 1/21/17.
  */
+
 import com.rabbitmq.client.*;
 
 import java.io.BufferedReader;
@@ -15,9 +16,12 @@ import java.util.Scanner;
 public class Client3 {
     static String currentClient;
     private final static String MY_NAME = "Client3";
-    private final static int PORT =4567;
-    private final static String QUEUE_NAME =MY_NAME;
-    public static void receiveFromServer(String from,String msg) throws IOException {
+    private final static int PORT = 4567;
+    private final static String QUEUE_NAME = MY_NAME;
+
+    /* The client thread calls this method when the client receives a message from the socket
+    * */
+    public static void receiveFromServer(String from, String msg) throws IOException {
         // System.out.println(from);
 
         //if(from.equals(currentClient)) {
@@ -26,13 +30,18 @@ public class Client3 {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-        String message = from+","+msg;
+        String message = from + "," + msg;
         channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
         //System.out.println(" [x] Sent '" + message + "'");
         channel.close();
         connection.close();
         //  }
     }
+
+    /**
+     * RabbitMQ listener, when a message is added to the queue the listener is triggered and the
+     * messge gets displayed on the console
+     **/
     public static void ProcessMessage() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
@@ -48,34 +57,33 @@ public class Client3 {
                     throws IOException {
                 String message = new String(body, "UTF-8");
                 //    System.out.println(message);
-                String[] data=message.split(",");
-                System.out.println(data[0]+": "+data[1]);
+                String[] data = message.split(",");
+                System.out.println(data[0] + ": " + data[1]);
 
             }
         };
         channel.basicConsume(QUEUE_NAME, true, consumer);
     }
-    static StringBuffer openChat(String clientName) {
-        return null;
-    }
+
+
     public static void main(String args[]) throws Exception {
         String hostName = "localhost";
         int portNumber = 1234;
-        HashMap<String,Boolean> map=new HashMap<String,Boolean>();
-        map.put("Client1",true);
-        map.put("Client2",true);
-        map.put("Client3",true);
+        HashMap<String, Boolean> map = new HashMap<String, Boolean>();
+        map.put("Client1", true);
+        map.put("Client2", true);
+        map.put("Client3", true);
         ProcessMessage();
         new Thread(new ClientRecv(PORT), "recv").start();
-        while(true) {
+        while (true) {
             System.out.println("Client List");
-            for ( String key : map.keySet() ) {
-                System.out.println( key );
+            for (String key : map.keySet()) {
+                System.out.println(key);
             }
             System.out.println("Enter Client Name:");
-            Scanner sc=new Scanner(System.in);
-            String currentClient=sc.nextLine();
-            if(map.containsKey(currentClient)) {
+            Scanner sc = new Scanner(System.in);
+            String currentClient = sc.nextLine();
+            if (map.containsKey(currentClient)) {
                 System.out.println("Start Typing......");
                 try (
 
@@ -97,7 +105,7 @@ public class Client3 {
                         fromUser = stdIn.readLine();
                         if (fromUser != null) {
                             System.out.println("You: " + fromUser);
-                            out.println(MY_NAME+","+currentClient+","+fromUser);
+                            out.println(MY_NAME + "," + currentClient + "," + fromUser);
                         }
                     }
                 } catch (UnknownHostException e) {
@@ -111,8 +119,6 @@ public class Client3 {
             }
         }
     }
-
-
 
 
 }
