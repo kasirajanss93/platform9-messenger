@@ -1,6 +1,6 @@
 # platform9-messenger
 
-This is a Messaging system where different clients can communicate with each other. The design is done to handle the asynchronous request similar to ACTOR model implementation i.e each client will have its own mailbox where the message sits.
+This is a Messaging system where different clients can communicate with each other. The design is done to handle the asynchronous request similar to ACTOR model implementation i.e each client will have its own mailbox where the message is received.
 
 Assumptions
 
@@ -21,6 +21,8 @@ Assumptions
 8. If the client name entered is wrong, then it will prompt again to select the client
 
 9. The ports of each client are stored in the server in a hashmap. This can be enhanced in the future, allowing clients to register to the server
+
+10. RabbitMQ is used in the server and client to offload the request to different thread, while will take of IO operations and other processing done with the messages. It also provides a FIFO based mechanism, for the message to be consumed in a particular order
 
 
 System Explanation
